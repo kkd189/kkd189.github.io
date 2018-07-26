@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scatterplot d3v4</title>
+  <style type="text/css">
+    body{
+      margin: 0;
+      font-family: arial, sans;
+    }
+
+    .label{
+      font-size: 15px;
+      fill: Green;
+
+    }
+
+    .legend text,
+    .axis text {
+      font-size: 13px;
+      fill: Green;
+    }
+
+    .axis path,
+    .axis line{
+      fill: Green;
+      stroke-width: .5px;
+      stroke: Green;
+    }
+
+    .circle{
+      fill-opacity: 0.65;
+    }
+
+    .bubble{
+      opacity: 1;
+      transition: opacity 0.3s;
+    }
+
+    .bubble:hover text{
+      opacity: 1;
+    }
+
+    .bubble:hover circle{
+      fill-opacity: 1;
+    }
+
+    .legend rect{
+      fill-opacity: 0.75;
+    }
+
+    .legeng:hover rect{
+      fill-opacity:1;
+    }
+  .button {
+          background-color: yellow; /*GREEN*/
+          border: double;
+          color:  black;
+          padding: 5px 75px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 14px;
+          margin: 4px 2px;
+          cursor: pointer;
+  }
+
+  .button2 {background-color: orange}
+
+  #chart {
+        position: fixed;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+      }
+
+  </style>
+  <script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body bgcolor="black">
+  
+<h2 style="color:blue;"> World Countries comparison GDP vs Infant Motality and GDP vs Literacy </h2>
+<p style="color:blue;"> Here I am trying to show how GDP impacts Infant Mortality and Literacy rate</p>
+  <!--<div id="option">
+     <input name="LITButton" 
+           type="button" 
+           value="GDP vs Literacy" 
+           onclick="LiteracyData()" />
+</div>
+<div id="option">
+      <input name="IMButton" 
+           type="button" 
+           value="GDP vs Infant Mortality" 
+           onclick="IMData()" />
+</div> -->
+<button class= "button" onclick="LiteracyData()"> GDP Vs Literacy </button> 
+
+<button class= "button button2" onclick="IMData()"> GDP Vs Infant Mortality </button>
+
+<script type="text/javascript">
+  var margin = {top: 20, right: 20, bottom: 80, left:80};
+  var width = 960 - margin.left - margin.right;
+  var height = 500 - margin.top - margin.bottom;
+
+  var svg = d3.select('body')
+    .append('svg')
+    .attr('width', width + margin.left + margin.right)
+    .attr('height', height + margin.top + margin.bottom)
+  .append('g')
+    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+
+//<svg viewBox="960 500 960 500"></svg>
+
+//<svg preserveAspectRatio="xMidYMid meet"></svg>
+
+  
+
+  // The API for scales have changed in v4. There is a separate module d3-scale which can be used instead. The main change here is instead of d3.scale.linear, we have d3.scaleLinear.
+  var xScale = d3.scaleLinear()
+    .range([0, width -170 ]);
+
+  var yScale = d3.scaleLinear()
+    .range([height, 20]);
+
+  // square root scale.
+  var radius = 3.5;
+
+  // the axes are much cleaner and easier now. No need to rotate and orient the axis, just call axisBottom, axisLeft etc.
+  var xAxis = d3.axisBottom()
+    .scale(xScale);
+
+  var yAxis = d3.axisLeft()
+    .scale(yScale);
+
+  // again scaleOrdinal
+  var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+  d3.csv('worldcountries.csv', function(error, data){
+    data.forEach(function(d){
+       d.IM = +d.IM;
+       d.GDP = +d.GDP;
+       //d.PetalLength = +d.PetalLength;
+       //d.Species = d.Name;
+    });
+
+    xScale.domain(d3.extent(data, function(d){
+      return d.GDP;
+    })).nice();
+
+    yScale.domain(d3.extent(data, function(d){
+      return d.IM;
+    })).nice();
+
+    //radius.domain(d3.extent(data, function(d){
+    //  return d.PetalLength;
+    //})).nice();
+
+    // adding axes is also simpler now, just translate x-axis to (0,height) and it's alread defined to be a bottom axis. 
+    svg.append('g')
+      .attr('transform', 'translate(0,' + height + ')')
+      .attr('class', 'x axis')
+      .call(xAxis);
+
+    // y-axis is translated to (0,0)
+    svg.append('g')
+      .attr('transform', 'translate(0,0)')
+      .attr('class', 'y axis')
+      .call(yAxis);
+
+
+    var bubble = svg.selectAll('.bubble')
+      .data(data)
+      .enter().append('circle')
+      .attr('class', 'bubble')
+      .attr('cx', function(d){return xScale(d.GDP);})
+      .attr('cy', function(d){ return yScale(d.IM); })
+      .attr('r', 3.5)
+      .style('fill', function(d){ return color(d.Region); });
+
+    bubble.append('title')
+      .attr('x','x1', function(d){ return d.Country; })
+      .text(function(d){
+        return d.Country;
+      });
+
+
+    // adding label. For x-axis, it's at (10, 10), and for y-axis at (width, height-10).
+    svg.append('text')
+      .attr('x', 1)
+      .attr('y', 1)
+      .attr('class', 'label')
+      .text('IM');
+
+
+    svg.append('text')
+      .attr('x', width - 130)
+      .attr('y', height - 10)
+      .attr('text-anchor', 'end')
+      .attr('class', 'label')
+      .text('GDP');
+
+    var legend = svg.selectAll('legend')
+      .data(color.domain())
+      .enter().append('g')
+      .attr('class', 'legend')
+      .attr('transform', function(d,i){ return 'translate(0,' + i * 20 + ')'; });
+
+    // give x value equal to the legend elements. 
+    // no need to define a function for fill, this is automatically fill by color.
+    legend.append('rect')
+      .attr('x', width)
+      .attr('width', 10)
+      .attr('height', 10)
+      .style('fill', color);
+
+    // add text to the legend elements.
+    // rects are defined at x value equal to width, we define text at width - 6, this will print name of the legends before the rects.
+    legend.append('text')
+      .attr('x', width - 6)
+      .attr('y', 9)
+      .attr('dy', '.35em')
+      .style('text-anchor', 'end')
+      .text(function(d){ return d; });
+
+
+    
+    legend.on('click', function(type){
+      d3.selectAll('.bubble')
+        .style('opacity', 0.15)
+        .filter(function(d){
+          return d.Region == type;
+        })
+        .style('opacity', 1);
+    })
+
+
+  })
+
+  function LiteracyData() {
+
+  d3.csv('worldcountries.csv', function(error, data){
+    data.forEach(function(d){
+       d.LIT = +d.LIT;
+       d.GDP = +d.GDP;
+
+    });
+
+    xScale.domain(d3.extent(data, function(d){
+      return d.GDP;
+    })).nice();
+
+    yScale.domain(d3.extent(data, function(d){
+      return d.LIT;
+    })).nice();
+
+    var svg = d3.select("body").transition();
+    
+    svg.select(".x.axis") // change the x axis
+            .duration(750)
+            .call(xAxis);
+
+         svg.select('.label')
+            .text('LIT'); 
+
+        svg.select(".y.axis") // change the y axis
+            .duration(750)
+            .call(yAxis);
+            
+        svg.selectAll(".bubble") // change the x axis
+            .duration(750)
+            .attr('cx', function(d){return xScale(d.GDP);})
+            .attr('cy', function(d){ return yScale(d.LIT);})   
+
+  })
+
+}
+  function IMData() {
+
+  d3.csv('worldcountries.csv', function(error, data){
+    data.forEach(function(d){
+       d.IM = +d.IM;
+       d.GDP = +d.GDP;
+
+    });
+
+    xScale.domain(d3.extent(data, function(d){
+      return d.GDP;
+    })).nice();
+
+    yScale.domain(d3.extent(data, function(d){
+      return d.IM;
+    })).nice();
+
+    var svg = d3.select("body").transition();
+
+
+ 
+    svg.select(".x.axis") // change the x axis
+            .duration(750)
+            .call(xAxis);
+
+         svg.select('.label')
+            .text('IM'); 
+
+        svg.select(".y.axis") // change the y axis
+            .duration(750)
+            .call(yAxis);
+            
+        svg.selectAll(".bubble") // change the x axis
+            .duration(750)
+            .attr('cx', function(d){return xScale(d.GDP);})
+            .attr('cy', function(d){ return yScale(d.IM);})
+
+        svg.append('text')
+            .attr('x', width)
+            .attr('y', height - 10)
+            .attr('text-anchor', 'end')
+            .attr('class', 'label')
+            .text('IM');    
+
+  })
+
+}
+
+</script>
+  
+</body>
+</html>
