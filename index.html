@@ -2,66 +2,67 @@
 <head>
 <title> Visualization Description </title>
 </head>
-<body bgColor='black'>
-<center><h1><font color = "Green" face="Comic Sans MS">GDP, Literacy and Infant Mortality! </font></h1></center><br>
+<body bgColor='#B5c689'>
+<center><h2><font color="blue" face="Times New Roman">GDP, Literacy and Infant Mortality! </font></h2></center><br>
 
-<h2 style="color:green;">A comparison of GDP, Literacy and Infant Mortality across world countries</h3> <a href="Viz.html"><font color=red >Please click here to view Visualization</font></a>
+<h3> A comparison of GDP, Literacy and Infant Mortality across world countries</h3> <a href="Viz.html"><font color=blue > <b>Please click here to view Visualization</b> </font></a>
 
-<h4 style="color: Orange;"> <u>About the Dataset</u></h2>
-                    <small> 
-                        <p style="color: green;">Have you ever wondered what causes a country to flourish and what are the factors that drive it? Or, what factors change based on how well the country is doing?
-Specifically, how does Literacy and Infant mortality vary based on GDP? Is there a co-relation between the country's GDP and the Infant mortality in that country? How about literacy? <br> To do the comparison, I have taken data of World Countries from <strong><a
+<h4 style="color: brown;"> <u>About the Dataset</u></h2>
+                  
+                        <p> Have you ever wondered what causes a country to flourish and what are the factors that drive it? Or, what factors change based on how well the country is doing?
+Specifically, how does Literacy and Infant mortality vary based on GDP? Is there a co-relation between the country's GDP and the Infant mortality in that country? How about literacy? To do the comparison, I have taken data of World Countries from <strong><a
                                     href="https://www.kaggle.com/fernandol/countries-of-the-world">Kaggle</a> dataset</strong>. Instead of analyzing the entire dataset, I have taken a subset of dataset, and I have 
                         tried to show correlation between GDP, Literacy and Infant mortality of countries across the world. Since in the dataset, for numeric values - the decimal point was represented as comma, I had to reformat the dataset to replace 'comma' with 'Decimal' so plotting could be done accurately. Also I deleted few of the countries where either the GDP value or Infant Mortality Value was 'Null'</p>
-                    </small>
+                   
 
 
-<h4 style="color:Orange;"><u>Visualization Details</u></h4>
 
-<h5 style="color:Orange;">Visualization Structure (Martini) </h5>
-                        <small>
-                            <p style="color:green;">
-                                This Visualization uses the hybrid approach of an Interactive Webpage to narrate the visual story; Specifically, this follows the martini glass with the author driven overview in the home page, and once the reader clicks on the visualization link (in red), the reader is redirected to an interactive page which the user is free to navigate and arrive at their conclusions. <br>
+<h4 style="color:brown;">Visualization Structure (Martini) </h4>
+                       
+                            <p>
+                                This project uses the hybrid approach of an Interactive Webpage to narrate the visual story; Specifically, this follows the martini glass with the author driven overview in the home page, and once the reader clicks on the visualization link (below in red), the reader is redirected to an interactive page which the user is free to navigate and arrive at their conclusions.
 Built on scenes with annotations having parameters connected with triggers; 
 
-This Visualization follows the dark template throughout for visual consistency across scenes as well as for easy reading (darker background does not strain the eyes as much as a white background). Also, I have followed Schnider’s Mantra for Visualization. <br> <br>
+This Visualization follows the dark template throughout for visual consistency across scenes as well as for easy reading (darker background does not strain the eyes as much as a white background).
 
-Brief explanation of the Visualization elements below:
+Brief explanation of the various visual structures used in the visualization below:
                             </p>
           
 
 
-                        </small>
+                        
 
-<h5 style="color: Orange;"> Scenes:  </h5>
-                    <small> 
-                        <p style="color: green;"> There are two main scenes for the user to navigate: <br> <br>
+<h4 style="color: brown;"> 1) Scenes:  </h4>
+                  
+                        <p> There are two main scenes for the user to navigate: <br><br>
     &nbsp&nbsp a) <strong>GDP vs Infant Mortality</strong> <br>
     &nbsp&nbsp b) <strong>GDP vs Literacy</strong> <br><br>
- <strong> <u> The first scene </u> </strong> is the visual representation of <strong>GDP vs Infant Mortality</strong> - By this Graph, I wanted to show correlation between GDP and Infant Mortality across countries of the world. <br> Since I have Quantitative Independent variable on both the axes i.e. we can have countries with same infant mortality but different GDP and Vice versa, and also the objective was to show the trend/correlation – so it made sense to use Scatter plot for Visualization. <br> From the Scatter plot, we can deduce that there is a strong relation between GDP and infant Mortality. Countries with higher GDP have lower Infant mortality. <br> <br>
+&nbsp&nbsp The first scene is the visual representation of <strong>GDP vs Infant Mortality</strong> - the scatterplot pinpoints the data per country and also gives an overall trend. 
+We can clearly see that the Infant mortality is higher in countries with low GDP. <br>
 
-<strong> <u> The Second scene </u> </strong>is the visual representation of <strong>GDP vs Literacy</strong> - By this Graph, I wanted to show correlation between GDP and Literacy across countries of the world. <br> Since I have Quantitative Independent variable on both the axes i.e. we can have countries with same Literacy % but different GDP and Vice versa, and also the objective was to show the trend/correlation – so it made sense to use Scatter plot for Visualization. <br> From the Scatter plot, we can deduce that there is a strong relation between GDP and Literacy. Countries with lower GDP could have a low or high Literacy rate - but Countries with higher GDP definitly have higher Literacy. <br> <br>
+&nbsp&nbsp The Second scene is the visual representation of <strong>GDP vs Literacy</strong> - the scatterplot pinpoints the data per country and also gives an overall trend. 
+We can clearly see that none of the countries with high GDP have Literacy rate(%) below 90 . <br>
 
-&nbsp&nbsp Within both the scenes, we are using the following to ensure visual consistency between scenes: <br> <br>
+&nbsp&nbsp Within both the scenes, we are using the following to ensure visual consistency between scenes:<br><br>
    &nbsp&nbsp&nbsp&nbsp&nbsp i) Both the scenes use dark theme <br>
-   &nbsp&nbsp&nbsp&nbsp&nbsp  ii) Both the scenes make use of the same Canvas so that reader is focussed on the core message rather than encountering a new chart in every scene <br>
-   &nbsp&nbsp&nbsp&nbsp&nbsp iii) Both the scenes make use of same color template as well as the shape/size of the legends <br>
-                     </small>       
+   &nbsp&nbsp&nbsp&nbsp&nbsp  ii) Both the scenes make use of the same Canvas so that reader is focussed on the core message rather than encountering a new chart in every scene<br>
+   &nbsp&nbsp&nbsp&nbsp&nbsp iii) Both the scenes make use of same color template as well as the shape/size of the legends<br>
+                      
 
-<h5 style="color: Orange;">   <strong>Annotations:</strong> </h5>
-                    <small> 
-                        <p style="color: green;">
-                            To represent the annotations within the scene, we can hover over the circle in the graph and see the Country name the dot/circle represents and its specific GDP value. <br> The annotation is made hover dependent to avoid text/data cluttering. Since annotation is hover dependent, so they get cleared when cursor moves away from dot. 
+<h4 style="color: brown;">   <strong> 2) Annotations:</strong> </h5>
+                   
+                        <p>
+                            To represent the annotations within the scene, we can hover over the circle in the graph and see the Country name the dot/circle represents and its specific GDP value.
 
          
                         </p>
-                    </small>
+                    
 
-<h5 style="color: Orange;">   <strong>Parameters: </strong> </h5>
-                    <small> 
-                        <p style="color: green;">
+<h4 style="color: brown;">   <strong> 3) Parameters: </strong> </h5>
+                   
+                        <p>
                             
-                            The <STRONG> Infant Mortality </STRONG> and <STRONG> Literacy Rate </STRONG> in the Visualization are the parameters for this visualization. Clicking on the buttons incorporates these parameters and triggers a change in the scenes. Please make note of the change in Y axis label and value - when button is clicked<br><br>
+                            There are two buttons in the Visualization which are the parameters for this visualization. Clicking on these buttons triggers a change in the scenes. Please make note of the change in Y axis label and value - when button is clicked<br><br>
 
      &nbsp a) GDP vs Infant Mortality:   You will be able to see the D3 Graph representing GDP vs Infant Mortality upon clicking on this button at top left <br>
  
@@ -70,24 +71,24 @@ Brief explanation of the Visualization elements below:
 &nbsp Thus clicking on these parameters controls the state of the visualization.
 
                         </p>
-                    </small>
+                    
 
-<h5 style="color: Orange;">   <strong>Triggers: </strong> </h5>
-                    <small> 
-                        <p style="color: green;"> 
+<h4 style="color: brown;">   <strong> 4) Triggers: </strong> </h5>
+                     
+                        <p> 
                             
-                            a) <strong> The BUTTONS </strong> at the top for the <strong>Infant Mortality</strong> and <strong>Literacy charts</strong> are the triggers, since clicking on those buttons trigger the change in the scene. <br> When the viewer navigates between the scenes, the 'Y' axis values change due to change in parameter. Override functionality is used to give good visual effect between the two scenes, also visualization has a smooth animation and no jarring effect.   <br>
+                            a) The buttons at the top for the <strong>Infant Mortality</strong> and <strong>Literacy charts</strong> are the triggers, since clicking on those buttons trigger the change in the scene.When the viewer navigates between the scenes, the 'Y' axis values change due to change in parameter. Override functionality is used to give good visual effect between the two scenes, also visualization has a smooth animation and no jarring effect.<br>
 
 
-b) Another trigger is also the <strong> FILTERING </strong> based on the legend, when we click on any specific legend (legend denoted by a different color on the right), the  countries specific to that region are highlighted. Here the legend parameter "triggers" the highlight display of those countries. <br> Filters provide flexibility to the user, if they want to see how the countries of a specific region are performing or for that matter how a specific country is performing – they can achieve that using filters.To come out of the filter, the user should click on the same legend again <br>
+b) Another trigger is also the filtering based on the legend, when we click on any specific legend (legend denoted by a different color on the right), the  countries specific to that region are highlighted. Here the legend parameter "triggers" the highlight display of those countries. <b>To come out of the filter, the user should click on the same legend again</b> <br>
 
 c) The viewer is aware of these triggers because of the contrasting buttons which are clickable and thus interactive. Also, interactivity is weaved into the visualization by making all the triggers (filter triggers) being visually clear with explanation.
 
                         </p>
-                    </small> <br>
+                    <br>
 
 
-<a href="Viz.html"><font color=red >Please click here to view Visualization</font></a>
+<a href="Viz.html"><font color=blue > <b>Please click here to view Visualization</b> </font></a>
 
 
 </body>
